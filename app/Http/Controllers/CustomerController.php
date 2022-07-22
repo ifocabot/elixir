@@ -21,7 +21,7 @@ class CustomerController extends Controller
                 return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '<a href="/customer/'.$row->id.'/edit" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -83,7 +83,12 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = customer::find($id);
+        $area = Area::all();
+        return view ('forms.editCustomer',compact(
+            'customer',
+            'area'
+        ));
     }
 
     /**
@@ -95,7 +100,13 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $model = customer::findorfail($id);
+        $model->nama_customer = $request->nama_customer;
+        $model->alamat_customer = $request->alamat_customer;
+        $model->area_id = $request->area_id;
+        $model->save();
+
+        return redirect('customer')->with('toast_success', 'Data Customer Berhasil Diedit!');
     }
 
     /**
