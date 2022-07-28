@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
     <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css">
 
 
 
@@ -99,6 +100,8 @@
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
 
     <script src="{{ asset('assets/js/stisla.js') }}"></script>
 
@@ -109,12 +112,15 @@
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 
     <!-- Page Specific JS File -->
+
+<!-- Select2 JS -->    
     <script>
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
         });
 
     </script>
+<!-- Signature pad JS --> 
     <script type="text/javascript">
         var signaturePad = $('#signaturePad').signature({
             syncField: '#signature64'
@@ -127,6 +133,8 @@
         });
 
     </script>
+
+<!-- Datatables List User --> 
 <script type="text/javascript">
   $(function () {
     
@@ -149,6 +157,8 @@
   });
 </script>
 
+
+<!-- Datatables Data customer --> 
 <script type="text/javascript">
   $(function () {
     
@@ -170,6 +180,7 @@
     
   });
 </script>
+
 
 </body>
 

@@ -24,13 +24,18 @@ class PickupController extends Controller
      */
     public function index()
     {
-        $pickup = pickup::whereDate('created_at', Carbon::today())->paginate(10);
+        $to = Carbon::now();
+        $date = Carbon::yesterday();
+
+        $pickup = pickup::whereBetween('created_at',[$date,$to])->paginate(10);
         $balance = pickup::whereDate('created_at',carbon::today())->sum('total_pickup');
         $customer = Customer::all();
         return view('tables.riwayatPickups',compact(
             'pickup',
             'customer',
-            'balance'
+            'balance',
+            'to',
+            'date'
         ));
     }
 
@@ -67,27 +72,12 @@ class PickupController extends Controller
     public function create()
     {
         $pickup = pickup::all();
-
-        $testhour = carbon::yesterday();
-        $trialendofday = $testhour->hour('08');
-
-        $hariini = carbon::now();
-        $hariini->hour = 8;
-        $hariini->minute = 00;
-        $hariini->second = 00;
-
-        $besok = carbon::now()->addDays(1);
-        $besok->hour = 3;
-        $besok->minute = 00;
-        $besok->second = 00;
-
-        $pickup2 = pickup::whereBetween('created_at',[$hariini,$besok])->where('status','<', 5)->get();
+        $pickup2 = pickup::wheredate('created_at',Carbon::today())->where('status','<', 5)->get();
         $customer = customer::all();
         return view('forms.tambahPickups',compact(
             'customer',
             'pickup',
-            'pickup2',
-            'trialendofday'
+            'pickup2'
         ));
     }
 
@@ -217,7 +207,11 @@ class PickupController extends Controller
 
     public function listPickup()
     {
-        $pickup = pickup::paginate(10);
+
+        $now = carbon::now();
+        $month = $now->format('m');
+
+        $pickup = pickup::wheremonth('created_at',$month)->paginate(10);
         $pickup2 = pickup::where('status','<',2)->get();
         $customer = customer::all();
         return view('tables.listPickup',compact(

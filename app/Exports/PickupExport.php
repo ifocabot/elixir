@@ -24,7 +24,10 @@ class PickupExport implements ShouldAutoSize,WithMapping, WithHeadings, FromQuer
 
     public function query()
     {
-        return pickup::whereDate('created_at', Carbon::today())->with('customer');
+        $to = Carbon::now();
+        $date = Carbon::yesterday();
+
+        return pickup::whereBetween('created_at',[$date,$to])->with('customer');
     }
     public function map($pickup):array
     {
