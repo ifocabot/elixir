@@ -24,6 +24,15 @@
                             <input type="password" class="form-control" name="password">
                         </div>
                         <div class="form-group">
+                            <label>Rute</label>
+                            <select class="js-example-basic-single" name="rute">
+                                <option value="">--Rute--</option>
+                                @foreach ($rute as $a)
+                                <option value="{{$a->id}}">{{$a->nama_area}}</option>    
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Level</label>
                             <select class="js-example-basic-single" name="level">
                                 @if ($user->level == "admin")

@@ -67,6 +67,14 @@
                                     <a class="nav-link" href="/pickup/create"><i class="far fa-file-alt"></i>
                                         <span>Form Pickup</span></a>
                                 </li>
+                                <li class="{{ Request::is('pickup/filter') ? 'nav-item active' : '' }}">
+                                    <a class="nav-link" href="/pickup/filterPickup"><i class="far fa-file-alt"></i>
+                                        <span>Pickup Filter</span></a>
+                                </li>
+                                <li class="{{ Request::is('pickup/filter') ? 'nav-item active' : '' }}">
+                                    <a class="nav-link" href="/pickup/outStandingPickup"><i class="far fa-file-alt"></i>
+                                        <span>Outstanding Pickup</span></a>
+                                </li>
                                 @if(auth()->user()->level == 'admin')
                                 <li class="{{ Request::is('pickup') ? 'nav-item active' : '' }}">
                                     <a href="/pickup" class="nav-link"><i class="fas fa-th-list"></i><span>Riwayat pickup harian</span></a>

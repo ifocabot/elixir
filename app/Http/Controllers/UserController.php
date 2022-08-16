@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Yajra\DataTables\DataTables;
+use App\Models\Area;
 
 
 class UserController extends Controller
@@ -38,7 +39,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('forms.tambahUser');
+        $rute = Area::all();
+        return view('forms.tambahUser',compact('rute'));
     }
 
     /**
@@ -53,6 +55,7 @@ class UserController extends Controller
         $model->name = $request->name;
         $model->email = $request->email;
         $model->level = $request->level;
+        $model->rute  = $request->rute;
         $model->password = bcrypt($request->password);
         $model->save();
 
@@ -80,7 +83,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('forms.editUser',compact('user'));
+        $rute = Area::all();
+        return view('forms.editUser',compact('user','rute'));
     }
 
     /**
@@ -96,6 +100,7 @@ class UserController extends Controller
         $model->name = $request->name;
         $model->email = $request->email;
         $model->level = $request->level;
+        $model->rute = $request->rute;
         $model->password = bcrypt($request->password);
         $model->save();
 

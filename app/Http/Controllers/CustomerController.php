@@ -53,6 +53,7 @@ class CustomerController extends Controller
     {
         $model = new customer;
         $model->nama_customer = $request->nama_customer;
+        $model->kode_customer = $request->kode_customer;
         $model->alamat_customer = $request->alamat_customer;
         $model->area_id = $request->area_id;
         $model->save();
@@ -102,6 +103,7 @@ class CustomerController extends Controller
     {
         $model = customer::findorfail($id);
         $model->nama_customer = $request->nama_customer;
+        $model->kode_customer = $request->kode_customer;
         $model->alamat_customer = $request->alamat_customer;
         $model->area_id = $request->area_id;
         $model->save();

@@ -16,10 +16,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $statusaktif = [0,1];
         $customer = customer::all()->count('id');
-        $pickupactive = pickup::where('status','=',0)->count();
+        $pickupactive = pickup::whereIn('status',$statusaktif)->count();
         $pickupstatus = pickup::where('status','=',1)->count();
-        $pickupselesai = pickup::where('status','=',2)->count();
+        $pickupselesai = pickup::where('status','=',5)->count();
 
         return view('dashboard',compact(
             'customer',

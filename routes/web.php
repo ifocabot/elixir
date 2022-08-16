@@ -33,6 +33,8 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 Route::group(['middleware'=> ['auth','AuthLevel:admin,pegawai']],function(){
     Route::get('/pickup/listpickup', [PickupController::class, 'listPickup']);
+    route::get('/pickup/filterPickup',[PickupController::class, 'filterPickup'])->name('filterPickup');
+    route::get('/pickup/outStandingPickup',[PickupController::class, 'outStandingPickup'])->name('outStandingPickup');
     Route::resource('pickup', PickupController::class);
     Route::get('pickup/export/today', [PickupController::class,'exportToday'])->name('exportToday');
     Route::get('pickup/export/all', [PickupController::class,'exportAll'])->name('exportAll');

@@ -16,6 +16,10 @@
                             <input type="text" class="form-control" name="nama_customer" value="{{$customer->nama_customer}}">
                         </div>
                         <div class="form-group">
+                            <label>Kode Customer</label>
+                            <input type="text" class="form-control" name="kode_customer" value="{{$customer->kode_customer}}">
+                        </div>
+                        <div class="form-group">
                             <label>Alamat</label>
                             <input type="text" class="form-control" name="alamat_customer" value="{{$customer->alamat_customer}}">
                         </div>

@@ -22,6 +22,13 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>Kendaraan</label>
+                            <select class="js-example-basic-single" name="kendaraan">
+                                <option value="1">Motor</option>
+                                <option value="2">Mobil</option>
+                            </select>
+                        </div>
                         <input type="hidden" name="status" value="0">
                         <div class="form-group">
                             <label>Staff</label>
@@ -38,6 +45,7 @@
                     </div>
                 </form>
             </div>
+            @else
 @endif
             
             @include('sweetalert::alert')
@@ -54,20 +62,17 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nama Customer</th>
-                                <th scope="col">Pickup date</th>
-                                <th scope="col">Area</th>
                                 <th scope="col">Alamat</th>
                                 <th scope="col">Aksi</th>
-                                <th scope="col">Detail</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             @foreach ($pickup2 as $p)
+                            @if(auth()->user()->rute == $p->customer->area->id)
                             <tr>
-                                <th scope="row">{{$loop->iteration }}</th>
-                                <td>{{ $p->customer->nama_customer }}</td>
-                                <td>{{ $p->created_at->format('d-m-y') }}</td>
-                                <td>{{ $p->customer->area->nama_area}}</td>                                
+                                <td scope="row">{{$loop->iteration }}</td>
+                                <td>{{ $p->customer->nama_customer }} @if($p->kendaraan == 1) <i class="fas fa-truck"></i> @else <i class="fas fa-motorcycle"></i> @endif</td>                             
                                 <td><a href="{{ route('customer.show', $p->customer->id) }}" class="btn btn-success mr-"><i class="fa fa-location-arrow" aria-hidden="true"></i></a></td>
                                 @if($p->status < 1) <form action="{{ route('test',$p->id) }}" method="POST">
                                     <td>
@@ -91,8 +96,8 @@
                                             <a href="{{route('ReportIn',$p->id)}}" class="btn btn-dark mr-1" role="button" aria-disabled="true">Report</a>
                                         </td>
                                         @endif
-                                        <td><a href="/pickup/detail/{{ $p->id }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Detail</a></td>
                                     </tr>
+                                    @endif
                             @endforeach
                         </tbody>
                     </table>

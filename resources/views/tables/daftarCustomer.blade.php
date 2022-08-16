@@ -12,6 +12,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Kode Customer</th>
                             <th>Nama Customer</th>
                             <th>Alamat Customer</th>
                             <th width="100px">Action</th>

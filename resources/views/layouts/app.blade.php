@@ -170,6 +170,7 @@
         ajax: "{{ route('customer.index') }}",
         columns: [
             {data: 'id', name: 'id'},
+            {data: 'kode_customer', name:'kode_customer'},
             {data: 'nama_customer', name: 'nama_customer'},
             {data: 'alamat_customer', name: 'alamat_customer'},
             {data: 'action', name: 'action', orderable: false, searchable: false},

@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Exports\PickupExport;
 use App\Exports\PickupExportAll;
+use App\Models\Area;
 use App\Models\customer;
 use PDF;
 use App\Models\pickup;
 use Carbon\Carbon;
+use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
-
-
 
 
 class PickupController extends Controller
@@ -91,6 +91,7 @@ class PickupController extends Controller
     {
         $model = new Pickup;
         $model->customer_id = $request->customer_id;
+        $model->kendaraan = $request->kendaraan;
         $model->status = $request->status;
         $model->staff_input_cs = $request->staff_input_cs;
         $model->kode_pickup = random_int(10000,99999);
@@ -221,9 +222,20 @@ class PickupController extends Controller
         ));
     }
 
-    public function aktif()
+    public function filterPickup()
     {
+        $pickup2 = pickup::where('status','<',2)->get();
 
+        return dd($pickup2);
+    }
+
+    public function outStandingPickup()
+    {
+        $status = [0,1];
+        $pickup = pickup::query()->whereHas('customer')->whereIn('status',$status)->get();
+        return View('tables.outStandingPickups',compact(
+            'pickup',
+        ));
     }
 
 }

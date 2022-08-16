@@ -16,6 +16,10 @@
                                         <td><b>{{$customer->nama_customer}}</b></td>
                                 </tr>
                                 <tr>
+                                        <td>Kode Customer</td>
+                                        <td><b>{{$customer->kode_customer}}</b></td>
+                                </tr>
+                                <tr>
                                         <td>Alamat Customer</td>
                                         <td><b>{{$customer->alamat_customer}}</b></td>
                                 </tr>

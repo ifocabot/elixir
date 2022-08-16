@@ -14,6 +14,8 @@
                         <div class="form-group">
                             <label>User Report</label>
                             <input type="text" class="form-control" readonly="" value="{{ auth()->user()->name }}" name="report_user">
+                            <label>Total Pickup</label>
+                            <input type="text" class="form-control" readonly="" value="{{ $pickup->total_pickup}}">
                             <label>Hybrid</label>
                             <input type="number" class="form-control" name="report_hybrid">
                             <label>Cashless</label>
